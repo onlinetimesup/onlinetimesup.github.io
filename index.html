@@ -26,7 +26,7 @@
 </head>
 <body>
     <h1>Time's Up</h1>
-    <form action="/play.html">
+    <form action="/play.html" id="f">
         <div>
             <label for="words">Mots du Time's Up :</label>
             <input type="text" name="words" id="words">
@@ -39,5 +39,15 @@
             <input type="submit" value="Jouer">
         </div>
     </form>
+    <script>
+        f = document.getElementById('f');
+        f.addEventListener('submit', function(e){
+            if (document.getElementById('words').value.length > 1200) {
+                localStorage.setItem('words', document.getElementById('words').value);
+                document.getElementById('words').value = 'localStorage';
+                document.getElementById('f').submit();
+            }
+        });
+    </script>
 </body>
 </html>

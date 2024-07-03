@@ -6,32 +6,50 @@ function shuffleArray(array) {
     }
 }
 
-p = new URLSearchParams(window.location.search.replace(/\+/g, '%20'))
+p = new URLSearchParams(window.location.search)
 
 if (p.has("words") && p.has("count")){
-    words = p.get('words')
     count = p.get('count')
-    words = decodeURIComponent(words);
+    count = parseInt(count)
+    words = p.get('words').replace(/\+/g, '%20')
+    if (words == "localStorage"){
+        words = localStorage.getItem("words");
+        if (words == null){
+            alert("No words found in localStorage");
+            window.location.href = "/";
+        }
+    }else{
+        words = decodeURIComponent(words);
+    }
     words = words.split(" ");
     if (typeof words != "object" || words.length < 2) {
         alert("Invalid GET parameter: ony one word provided");
         window.location.href = "/";
     }
     definite_words = [];
-    console.log(words)
     if (words.length <= count){
         shuffleArray(words);
     }else{
+        unique_words = new Set(words);
+        if (count > unique_words.size){
+            alert("Trop peu de mots fournis. Veuillez en donner plus.");
+            window.location.href = "/";
+        }
         for(let i = 0; i<count; i++){
-            w = words[Math.floor(Math.random() * words.length)];
+            k = 0;
+            w = words[Math.floor(Math.random() * (words.length-1))];
             while (definite_words.includes(w)){
                 w = words[Math.floor(Math.random() * words.length)];
+                k+=1;
+                if (k > 500){
+                    alert("Some words are duplicated. Please provide more words.");
+                    window.location.href = "/";
+                }
             }
             definite_words.push(w)
         }
         words = definite_words;
     }
-    console.log(words)
 } else {
     alert("Invalid GET parameter");
     stop();
@@ -113,10 +131,7 @@ unkown_button.addEventListener("click", function () {
     }
     word_p.innerHTML = undone_words.pop()
     current_word_id = words.indexOf(current_word);
-    console.log(current_word_id);
-    console.log(words);
     words.splice(current_word_id, 1);
-    console.log(words);
 });
 
 

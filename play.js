@@ -17,8 +17,21 @@ if (p.has("words") && p.has("count")){
         alert("Invalid GET parameter: ony one word provided");
         window.location.href = "/";
     }
-    shuffleArray(words);
-    words = words.slice(0,count);
+    definite_words = [];
+    console.log(words)
+    if (words.length <= count){
+        shuffleArray(words);
+    }else{
+        for(let i = 0; i<count; i++){
+            w = words[Math.floor(Math.random() * words.length)];
+            while (definite_words.includes(w)){
+                w = words[Math.floor(Math.random() * words.length)];
+            }
+            definite_words.push(w)
+        }
+        words = definite_words;
+    }
+    console.log(words)
 } else {
     alert("Invalid GET parameter");
     stop();

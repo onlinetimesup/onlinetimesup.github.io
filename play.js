@@ -6,19 +6,19 @@ function shuffleArray(array) {
     }
 }
 
-words = window.location.search.substring(1);
+p = new URLSearchParams(window.location.search.replace(/\+/g, '%20'))
 
-if (words.startsWith("words=")) {
-    words = words.substring(6).replace(/\+/g, '%20');;
+if (p.has("words") && p.has("count")){
+    words = p.get('words')
+    count = p.get('count')
     words = decodeURIComponent(words);
-    console.log(words);
     words = words.split(" ");
-    console.log(words);
     if (typeof words != "object" || words.length < 2) {
         alert("Invalid GET parameter: ony one word provided");
         window.location.href = "/";
     }
     shuffleArray(words);
+    words = words.slice(0,count);
 } else {
     alert("Invalid GET parameter");
     stop();

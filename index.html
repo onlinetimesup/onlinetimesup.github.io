@@ -4,12 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time's Up</title>
+    <style>
+        body{
+            font-size: 2em;
+        }
+        h1{
+            text-align: center;
+        }
+        form > div {
+            margin: 1em;
+        }
+        form > div > input {
+            font-size: 1em;
+        }
+        input[type='button'] {
+            margin: 1em;
+            padding: 0.5em 1em;
+        }
+    </style>
+    <link rel="stylesheet" href="play.css">
 </head>
 <body>
+    <h1>Time's Up</h1>
     <form action="/play.html">
-        <label for="words">Mots du Time's Up :</label>
-        <input type="text" name="words" id="words">
-        <button type="submit">Jouer</button>
+        <div>
+            <label for="words">Mots du Time's Up :</label>
+            <input type="text" name="words" id="words">
+        </div>
+        <div>
+            <label for="count">Nombre maximum de mots pendant chaque manche</label>
+            <input type="number" name="count" value="35">
+        </div>
+        <div>
+            <input type="button" value="Jouer">
+        </div>
     </form>
 </body>
 </html>

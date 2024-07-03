@@ -1,0 +1,66 @@
+.head{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    height: 10vh;
+}
+
+.head > p{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.word_div {
+    width: 100%;
+    height: 15vh;
+    align-items: center;
+    text-align: center;
+}
+.word_div .label {
+    font-size: 2em;
+}
+
+#word {
+    font-size: 7em;
+    margin-left: 1em;
+    font-weight: bold;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    height: 65vh;
+}
+
+.buttons > button{
+    width: 30vw;
+    height: 100%;
+    font-size: 2em;
+    margin: 1vw;
+}
+
+.baseline{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    height: 7vh;
+    font-size: 2em;
+}
+
+#end {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 7vh;
+}
+
+#end button{
+    margin: 1em;
+    font-size: 1em;
+}
